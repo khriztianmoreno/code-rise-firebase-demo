@@ -86,6 +86,9 @@
       // Get a reference to the database service
       const database = firebase.database();
 
+      // Initial load data
+      readUserData();
+
       // Shortcuts to DOM Elements.
       const $nameInput = document.getElementById('name');
       const $emailInput = document.getElementById('email');
@@ -103,6 +106,7 @@
         const age = $ageInput.value;
 
         writeUserData(name, email, age);
+        readUserData();
       }
 
       /**
@@ -116,6 +120,38 @@
           age
         });
       }
+
+      /**
+      * @description  read realtime from firebase
+      */
+      function readUserData() {
+        const starCountRef = firebase.database().ref('users/');
+        starCountRef.on('value', function (snapshot) {
+          refreshUI(snapshot.val());
+        });
+      }
+
+      /**
+      * @description  Show all users in table
+      */
+      function refreshUI(users) {
+        let tBody = '';
+        Object.keys(users).forEach(function (key) {
+          console.log(key, users[key]);
+          const tRow =
+            `
+            <tr>
+              <th scope="row">${key}</th>
+              <td>${users[key].name}</td>
+              <td>${users[key].email}</td>
+              <td>${users[key].age}</td>
+            </tr>
+          `;
+          tBody += tRow;
+        });
+
+        $usersList.innerHTML = tBody;
+      };
 
       /**
       * @description  Generate an UUID
