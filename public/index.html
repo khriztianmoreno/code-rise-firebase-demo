@@ -68,6 +68,27 @@
     </div>
   </div>
 
+  <script src="https://www.gstatic.com/firebasejs/4.6.0/firebase.js"></script>
+  <script>
+    'use strict';
+
+    (function () {
+      // Initialize Firebase
+      const config = {
+        apiKey: "<API_KEY>",
+        authDomain: "<PROJECT_ID>.firebaseapp.com",
+        databaseURL: "https://<DATABASE_NAME>.firebaseio.com",
+        storageBucket: "<BUCKET>.appspot.com",
+        messagingSenderId: "<SENDER_ID>",
+      };
+      firebase.initializeApp(config);
+
+      // Get a reference to the database service
+      const database = firebase.database();
+
+    })();
+
+  </script>
 </body>
 
 </html>

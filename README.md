@@ -1,8 +1,7 @@
 # Coderise Firebase Demo
+> Un simple ejemplo de como utilizar Firebase Database para crear y leer datos en tiempo real
 
 ![Coderise Logo](http://coderise.org/wp-content/uploads/2016/02/coderise-logo.png)
-
-> Un simple ejemplo de como utilizar Firebase Database para crear y leer datos en tiempo real
 
 ## Overview
 
