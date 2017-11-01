@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>Code Rise || @khriztianmoreno</title>
+  <!-- Required meta tags -->
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css" integrity="sha384-PsH8R72JQ3SOdhVi3uxftmaW6Vc51MKb0q5P2rRUpPvrszuE4W1povHYgTpBfshb"
+    crossorigin="anonymous">
+  <link rel="stylesheet" href="./css/app.css">
+</head>
+
+<body>
+  <header class="page-header">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-12">
+          <ul class="breadcrumb">
+            <li>
+              <a href="/">Inicio</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-12">
+          <h2>Code Rise Demo</h2>
+        </div>
+      </div>
+    </div>
+  </header>
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-sm">
+        <form name="form">
+          <div class="form-group">
+            <label for="name">Nombre</label>
+            <input type="text" class="form-control" id="name" placeholder="Tu fabuloso nombre" required>
+          </div>
+          <div class="form-group">
+            <label for="email">Correo Electronico</label>
+            <input type="email" class="form-control" id="email" aria-describedby="emailHelp" placeholder="pepitp@pomita.com" required>
+            <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
+          </div>
+          <div class="form-group">
+            <label for="age">Edad</label>
+            <input type="number" class="form-control" id="age" placeholder="Escribe tu edad" required>
+          </div>
+          <button type="submit" class="btn btn-primary" onclick="saveUser(event);">Guardar</button>
+        </form>
+      </div>
+      <div class="col-sm">
+        <table class="table">
+          <thead class="thead-dark">
+            <tr>
+              <th scope="col">#</th>
+              <th scope="col">Name</th>
+              <th scope="col">Email</th>
+              <th scope="col">Age</th>
+            </tr>
+          </thead>
+          <tbody id="usersList">
+
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+
+</body>
+
+</html>
