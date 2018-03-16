@@ -33,7 +33,7 @@
   <div class="container-fluid">
     <div class="row">
       <div class="col-sm">
-        <form name="form">
+        <form name="form" onsubmit="saveUser(event);">
           <div class="form-group">
             <label for="name">Nombre</label>
             <input type="text" class="form-control" id="name" placeholder="Tu fabuloso nombre" required>
@@ -47,7 +47,7 @@
             <label for="age">Edad</label>
             <input type="number" class="form-control" id="age" placeholder="Escribe tu edad" required>
           </div>
-          <button type="submit" class="btn btn-primary" onclick="saveUser(event);">Guardar</button>
+          <button type="submit" class="btn btn-primary">Guardar</button>
         </form>
       </div>
       <div class="col-sm">
@@ -69,106 +69,7 @@
   </div>
 
   <script src="https://www.gstatic.com/firebasejs/4.6.0/firebase.js"></script>
-  <script>
-    'use strict';
-
-    (function () {
-      // Initialize Firebase
-      const config = {
-        apiKey: "<API_KEY>",
-        authDomain: "<PROJECT_ID>.firebaseapp.com",
-        databaseURL: "https://<DATABASE_NAME>.firebaseio.com",
-        storageBucket: "<BUCKET>.appspot.com",
-        messagingSenderId: "<SENDER_ID>",
-      };
-      firebase.initializeApp(config);
-
-      // Get a reference to the database service
-      const database = firebase.database();
-
-      // Initial load data
-      readUserData();
-
-      // Shortcuts to DOM Elements.
-      const $nameInput = document.getElementById('name');
-      const $emailInput = document.getElementById('email');
-      const $ageInput = document.getElementById('age');
-      const $usersList = document.getElementById('usersList');
-
-      /**
-      * @description  save object User from document form
-      */
-      function saveUser(evt) {
-        evt.preventDefault();
-
-        const name = $nameInput.value;
-        const email = $emailInput.value;
-        const age = $ageInput.value;
-
-        writeUserData(name, email, age);
-        readUserData();
-      }
-
-      /**
-      * @description  write object User in firebase
-      */
-      function writeUserData(name, email, age) {
-        const id = generateUUID();
-        firebase.database().ref(`users/${id}`).set({
-          name,
-          email,
-          age
-        });
-      }
-
-      /**
-      * @description  read realtime from firebase
-      */
-      function readUserData() {
-        const starCountRef = firebase.database().ref('users/');
-        starCountRef.on('value', function (snapshot) {
-          refreshUI(snapshot.val());
-        });
-      }
-
-      /**
-      * @description  Show all users in table
-      */
-      function refreshUI(users) {
-        let tBody = '';
-        Object.keys(users).forEach(function (key) {
-          console.log(key, users[key]);
-          const tRow =
-            `
-            <tr>
-              <th scope="row">${key}</th>
-              <td>${users[key].name}</td>
-              <td>${users[key].email}</td>
-              <td>${users[key].age}</td>
-            </tr>
-          `;
-          tBody += tRow;
-        });
-
-        $usersList.innerHTML = tBody;
-      };
-
-      /**
-      * @description  Generate an UUID
-      */
-      function generateUUID() {
-        let d = new Date().getTime();
-        const uuid = 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function (c) {
-          const r = (d + Math.random() * 16) % 16 | 0;
-          d = Math.floor(d / 16);
-          return (c == 'x' ? r : (r & 0x3 | 0x8)).toString(16);
-        });
-        return uuid;
-      };
-
-    })();
-
-  </script>
+  <script src="./js/app.js"></script>
 </body>
 
 </html>
